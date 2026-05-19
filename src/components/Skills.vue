@@ -104,6 +104,15 @@ const skillCategories = [
       { name: "Postman", icon: "logos:postman-icon" },
     ],
   },
+  {
+    title: "Soft Skills",
+    skills: [
+      { name: "Teamwork", icon: "lucide:users" },
+      { name: "Communication", icon: "lucide:message-circle" },
+      { name: "Problem Solving", icon: "lucide:lightbulb" },
+      { name: "Adaptability", icon: "lucide:refresh-cw" },
+    ],
+  },
 ];
 
 const allSkills = computed(() => {
