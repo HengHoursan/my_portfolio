@@ -38,15 +38,20 @@
           <div class="row-header">
             <h3>{{ category.title }}</h3>
           </div>
-          <div class="row-items">
-            <div
-              v-for="skill in category.skills"
-              :key="skill.name"
-              class="skill-badge"
-            >
-              <Icon :name="skill.icon" class="skill-icon" />
-              <span class="skill-name">{{ skill.name }}</span>
-            </div>
+          <div class="row-items" :class="{ 'descriptive-items': category.title === 'Soft Skills' }">
+            <template v-for="skill in category.skills" :key="skill.name">
+              <div v-if="skill.description" class="descriptive-badge">
+                <div class="skill-badge-header">
+                  <Icon :name="skill.icon" class="skill-icon" />
+                  <span class="skill-name">{{ skill.name }}</span>
+                </div>
+                <p class="skill-desc">{{ skill.description }}</p>
+              </div>
+              <div v-else class="skill-badge">
+                <Icon :name="skill.icon" class="skill-icon" />
+                <span class="skill-name">{{ skill.name }}</span>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -107,10 +112,26 @@ const skillCategories = [
   {
     title: "Soft Skills",
     skills: [
-      { name: "Teamwork", icon: "lucide:users" },
-      { name: "Communication", icon: "lucide:message-circle" },
-      { name: "Problem Solving", icon: "lucide:lightbulb" },
-      { name: "Adaptability", icon: "lucide:refresh-cw" },
+      { 
+        name: "Teamwork", 
+        icon: "lucide:users", 
+        description: "Collaborating with teams using Git and GitHub branching, pull requests, and peer code reviews." 
+      },
+      { 
+        name: "Communication", 
+        icon: "lucide:message-circle", 
+        description: "Explaining technical concepts clearly to stakeholders and writing professional API documentation." 
+      },
+      { 
+        name: "Problem Solving", 
+        icon: "lucide:lightbulb", 
+        description: "Designing clean, modular, and maintainable software architecture to solve complex engineering challenges." 
+      },
+      { 
+        name: "Adaptability", 
+        icon: "lucide:refresh-cw", 
+        description: "Mastering new technologies quickly, including Vue, React, NestJS, Go, Spring Boot, and Firebase." 
+      },
     ],
   },
 ];
@@ -300,6 +321,68 @@ const allSkills = computed(() => {
 
   .row-header {
     min-width: auto;
+  }
+}
+
+.descriptive-items {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+  width: 100%;
+}
+
+.descriptive-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.descriptive-badge:hover {
+  background: var(--card-hover-bg);
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 0, 76, 0.15);
+}
+
+.skill-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.skill-badge-header .skill-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.skill-badge-header .skill-icon {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.descriptive-badge:hover .skill-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.skill-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .descriptive-items {
+    grid-template-columns: 1fr !important;
   }
 }
 </style>
