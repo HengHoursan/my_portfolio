@@ -98,7 +98,7 @@ const skillCategories = [
       { name: "Telegram API", icon: "logos:telegram" },
       { name: "Docker", icon: "logos:docker-icon" },
       { name: "RESTful APIs", icon: "carbon:api" },
-      { name: "WebSockets", icon: "logos:websocket" },
+      { name: "Socket.io", icon: "logos:socket-io" },
       { name: "JWT", icon: "logos:jwt-icon" },
       { name: "Swagger", icon: "logos:swagger" },
       { name: "Postman", icon: "logos:postman-icon" },

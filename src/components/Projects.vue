@@ -96,7 +96,7 @@ const projects = [
     title: "Movie Booking System",
     description:
       "Full-stack movie booking platform featuring a Vue.js frontend and Node.js backend. Includes real-time seat management and automated notifications.",
-    tech: ["Node.js", "Vue 3", "Express", "Redis", "MongoDB"],
+    tech: ["Node.js", "Vue 3", "Express", "Redis", "MongoDB", "Socket.io"],
     links: [
       {
         label: "Backend",
