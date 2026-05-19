@@ -169,17 +169,15 @@ p {
 
 @media (max-width: 992px) {
   .hero {
-    min-height: auto;
-    padding-top: 10rem;
-    padding-bottom: 5rem;
-    display: flex;
-    align-items: flex-start;
+    min-height: auto !important;
+    padding-top: 12rem !important;
+    padding-bottom: 5rem !important;
+    display: block !important;
   }
 
   .hero-container {
-    grid-template-columns: 1fr;
+    display: block !important;
     text-align: center;
-    gap: 2rem;
   }
   
   h3 {
@@ -188,20 +186,21 @@ p {
   }
 
   h1 { 
-    font-size: 3.2rem; 
-    line-height: 1.1;
+    font-size: 2.8rem !important; 
+    line-height: 1.2 !important;
     letter-spacing: -1px;
+    margin-bottom: 0.8rem;
   }
   
   h2 { 
-    font-size: 2rem;
+    font-size: 1.8rem !important;
     text-align: center; 
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 
   p { 
-    font-size: 1.1rem;
-    margin: 0 auto 2.5rem; 
+    font-size: 1.05rem;
+    margin: 0 auto 2rem; 
   }
 
   .hero-btns { 
