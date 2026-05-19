@@ -101,6 +101,7 @@ const skillCategories = [
       { name: "WebSockets", icon: "logos:websocket" },
       { name: "JWT", icon: "logos:jwt-icon" },
       { name: "Swagger", icon: "logos:swagger" },
+      { name: "Postman", icon: "logos:postman-icon" },
     ],
   },
 ];
