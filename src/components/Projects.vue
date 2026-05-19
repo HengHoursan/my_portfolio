@@ -145,6 +145,13 @@ const projects = [
     tech: ["Node.js", "Express", "React", "MongoDB"],
     github: "https://github.com/HengHoursan/manageRole",
   },
+  {
+    title: "Vue 3 Firebase CRUD",
+    description:
+      "A hands-on Vue 3 experiment integrating Firebase Firestore for real-time CRUD operations — built to explore reactive data binding and cloud-native database patterns.",
+    tech: ["Vue 3", "Firebase", "Firestore"],
+    github: "https://github.com/HengHoursan/VueCRUD",
+  },
 ];
 </script>
 
