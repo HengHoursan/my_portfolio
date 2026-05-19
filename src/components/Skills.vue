@@ -13,7 +13,18 @@
             class="marquee-item"
             :title="skill.name"
           >
-            <Icon :name="skill.icon" class="marquee-icon" />
+            <img 
+              v-if="skill.image" 
+              :src="skill.image" 
+              :alt="skill.name" 
+              class="marquee-icon marquee-image" 
+            />
+            <Icon 
+              v-else 
+              :name="skill.icon" 
+              class="marquee-icon" 
+              :style="skill.color ? { color: skill.color } : {}"
+            />
           </div>
           <div
             v-for="(skill, index) in allSkills"
@@ -21,7 +32,18 @@
             class="marquee-item"
             :title="skill.name"
           >
-            <Icon :name="skill.icon" class="marquee-icon" />
+            <img 
+              v-if="skill.image" 
+              :src="skill.image" 
+              :alt="skill.name" 
+              class="marquee-icon marquee-image" 
+            />
+            <Icon 
+              v-else 
+              :name="skill.icon" 
+              class="marquee-icon" 
+              :style="skill.color ? { color: skill.color } : {}"
+            />
           </div>
         </div>
       </div>
@@ -38,20 +60,42 @@
           <div class="row-header">
             <h3>{{ category.title }}</h3>
           </div>
-          <div class="row-items">
-            <div
-              v-for="skill in category.skills"
-              :key="skill.name"
-              class="skill-badge"
-              :data-tooltip="skill.description || null"
-            >
-              <Icon 
-                :name="skill.icon" 
-                class="skill-icon" 
-                :style="skill.color ? { color: skill.color } : {}"
-              />
-              <span class="skill-name">{{ skill.name }}</span>
-            </div>
+          <div class="row-items" :class="{ 'descriptive-grid': category.title === 'Soft Skills' }">
+            <template v-for="skill in category.skills" :key="skill.name">
+              <div v-if="skill.description" class="descriptive-card">
+                <div class="card-header">
+                  <img 
+                    v-if="skill.image" 
+                    :src="skill.image" 
+                    :alt="skill.name" 
+                    class="skill-icon skill-image" 
+                  />
+                  <Icon 
+                    v-else
+                    :name="skill.icon" 
+                    class="skill-icon" 
+                    :style="skill.color ? { color: skill.color } : {}"
+                  />
+                  <span class="card-title">{{ skill.name }}</span>
+                </div>
+                <p class="card-desc">{{ skill.description }}</p>
+              </div>
+              <div v-else class="skill-badge">
+                <img 
+                  v-if="skill.image" 
+                  :src="skill.image" 
+                  :alt="skill.name" 
+                  class="skill-icon skill-image" 
+                />
+                <Icon 
+                  v-else
+                  :name="skill.icon" 
+                  class="skill-icon" 
+                  :style="skill.color ? { color: skill.color } : {}"
+                />
+                <span class="skill-name">{{ skill.name }}</span>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -80,7 +124,7 @@ const skillCategories = [
       { name: "Express", icon: "devicon:express" },
       { name: "NestJS", icon: "logos:nestjs" },
       { name: "Go", icon: "logos:go" },
-      { name: "Gin", icon: "simple-icons:gin", color: "#00ADD8" },
+      { name: "Gin", icon: "simple-icons:gin", image: "/gin.png" },
       { name: "Laravel", icon: "logos:laravel" },
       { name: "Java", icon: "logos:java" },
       { name: "Spring Boot", icon: "logos:spring-icon" },
@@ -206,6 +250,12 @@ const allSkills = computed(() => {
   transition: all 0.3s ease;
 }
 
+.marquee-image {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
 .marquee-item:hover {
   transform: translateY(-15px) scale(1.1);
   background: var(--card-hover-bg);
@@ -276,63 +326,17 @@ const allSkills = computed(() => {
   font-size: 0.9rem;
   border: 1px solid var(--glass-border);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-}
-
-/* Premium dynamic tooltips for skills with description */
-.skill-badge[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 135%;
-  left: 50%;
-  transform: translate(-50%, 10px) scale(0.85);
-  background: #0d0614 !important;
-  color: #ffffff !important;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  white-space: normal;
-  width: 260px;
-  line-height: 1.5;
-  text-align: center;
-  border: 1px solid rgba(255, 0, 76, 0.3) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  font-weight: 500 !important;
-}
-
-.skill-badge[data-tooltip]::before {
-  content: '';
-  position: absolute;
-  bottom: 115%;
-  left: 50%;
-  transform: translate(-50%, 10px);
-  border-width: 6px;
-  border-style: solid;
-  border-color: rgba(255, 0, 76, 0.3) transparent transparent transparent !important;
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  z-index: 100;
-}
-
-.skill-badge[data-tooltip]:hover::after {
-  opacity: 1;
-  transform: translate(-50%, 0) scale(1);
-}
-
-.skill-badge[data-tooltip]:hover::before {
-  opacity: 1;
-  transform: translate(-50%, 0);
 }
 
 .skill-icon {
   font-size: 1.2rem;
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skill-image {
+  width: 1.3rem;
+  height: 1.3rem;
+  object-fit: contain;
 }
 
 .skill-badge:hover {
@@ -344,6 +348,82 @@ const allSkills = computed(() => {
 
 .skill-badge:hover .skill-icon {
   transform: scale(1.2) rotate(5deg);
+}
+
+/* Premium upgrades for descriptive grid & cards */
+.descriptive-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 1.25rem !important;
+  width: 100%;
+}
+
+.descriptive-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  padding: 1.25rem;
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.descriptive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 0, 76, 0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.descriptive-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 0, 76, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(255, 0, 76, 0.05);
+}
+
+.descriptive-card:hover::before {
+  opacity: 1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-header .skill-icon {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  transition: transform 0.4s ease;
+}
+
+.descriptive-card:hover .skill-icon {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
 }
 
 @media (max-width: 768px) {
@@ -376,6 +456,10 @@ const allSkills = computed(() => {
 
   .row-header {
     min-width: auto;
+  }
+
+  .descriptive-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 </style>
