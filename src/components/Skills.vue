@@ -95,6 +95,7 @@ const skillCategories = [
     skills: [
       { name: "OAuth2", icon: "logos:google-icon" },
       { name: "Telegram API", icon: "logos:telegram" },
+      { name: "Bakong KHQR", icon: "lucide:qr-code" },
       { name: "Docker", icon: "logos:docker-icon" },
       { name: "RESTful APIs", icon: "carbon:api" },
       { name: "Socket.io", icon: "logos:socket-io" },
