@@ -86,9 +86,8 @@ const skillCategories = [
       { name: "MongoDB", icon: "logos:mongodb-icon" },
       { name: "MySQL", icon: "devicon:mysql" },
       { name: "PostgreSQL", icon: "devicon:postgresql" },
-      { name: "Redis", icon: "devicon:redis" },
-      { name: "TypeORM", icon: "logos:typeorm" },
       { name: "Firebase", icon: "devicon:firebase" },
+      { name: "Redis", icon: "devicon:redis" },
     ],
   },
   {
