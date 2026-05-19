@@ -38,20 +38,16 @@
           <div class="row-header">
             <h3>{{ category.title }}</h3>
           </div>
-          <div class="row-items" :class="{ 'descriptive-items': category.title === 'Soft Skills' }">
-            <template v-for="skill in category.skills" :key="skill.name">
-              <div v-if="skill.description" class="descriptive-badge">
-                <div class="skill-badge-header">
-                  <Icon :name="skill.icon" class="skill-icon" />
-                  <span class="skill-name">{{ skill.name }}</span>
-                </div>
-                <p class="skill-desc">{{ skill.description }}</p>
-              </div>
-              <div v-else class="skill-badge">
-                <Icon :name="skill.icon" class="skill-icon" />
-                <span class="skill-name">{{ skill.name }}</span>
-              </div>
-            </template>
+          <div class="row-items">
+            <div
+              v-for="skill in category.skills"
+              :key="skill.name"
+              class="skill-badge"
+              :data-tooltip="skill.description || null"
+            >
+              <Icon :name="skill.icon" class="skill-icon" />
+              <span class="skill-name">{{ skill.name }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -80,6 +76,7 @@ const skillCategories = [
       { name: "Express", icon: "devicon:express" },
       { name: "NestJS", icon: "logos:nestjs" },
       { name: "Go", icon: "logos:go" },
+      { name: "Gin", icon: "simple-icons:gin" },
       { name: "Laravel", icon: "logos:laravel" },
       { name: "Java", icon: "logos:java" },
       { name: "Spring Boot", icon: "logos:spring-icon" },
@@ -137,7 +134,9 @@ const skillCategories = [
 ];
 
 const allSkills = computed(() => {
-  return skillCategories.flatMap((category) => category.skills);
+  return skillCategories
+    .filter((category) => category.title !== "Soft Skills")
+    .flatMap((category) => category.skills);
 });
 </script>
 
@@ -273,6 +272,58 @@ const allSkills = computed(() => {
   font-size: 0.9rem;
   border: 1px solid var(--glass-border);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+/* Premium dynamic tooltips for skills with description */
+.skill-badge[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 135%;
+  left: 50%;
+  transform: translate(-50%, 10px) scale(0.85);
+  background: #0d0614 !important;
+  color: #ffffff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  white-space: normal;
+  width: 260px;
+  line-height: 1.5;
+  text-align: center;
+  border: 1px solid rgba(255, 0, 76, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  font-weight: 500 !important;
+}
+
+.skill-badge[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(255, 0, 76, 0.3) transparent transparent transparent !important;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+.skill-badge[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.skill-badge[data-tooltip]:hover::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .skill-icon {
@@ -321,68 +372,6 @@ const allSkills = computed(() => {
 
   .row-header {
     min-width: auto;
-  }
-}
-
-.descriptive-items {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
-  gap: 1.5rem !important;
-  width: 100%;
-}
-
-.descriptive-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  background: var(--card-bg);
-  border: 1px solid var(--glass-border);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.descriptive-badge:hover {
-  background: var(--card-hover-bg);
-  border-color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 0, 76, 0.15);
-}
-
-.skill-badge-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.skill-badge-header .skill-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--text-primary);
-}
-
-.skill-badge-header .skill-icon {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.descriptive-badge:hover .skill-icon {
-  transform: scale(1.2) rotate(5deg);
-}
-
-.skill-desc {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin: 0;
-  font-weight: 400;
-}
-
-@media (max-width: 768px) {
-  .descriptive-items {
-    grid-template-columns: 1fr !important;
   }
 }
 </style>
