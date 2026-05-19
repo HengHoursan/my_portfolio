@@ -45,7 +45,11 @@
               class="skill-badge"
               :data-tooltip="skill.description || null"
             >
-              <Icon :name="skill.icon" class="skill-icon" />
+              <Icon 
+                :name="skill.icon" 
+                class="skill-icon" 
+                :style="skill.color ? { color: skill.color } : {}"
+              />
               <span class="skill-name">{{ skill.name }}</span>
             </div>
           </div>
@@ -76,7 +80,7 @@ const skillCategories = [
       { name: "Express", icon: "devicon:express" },
       { name: "NestJS", icon: "logos:nestjs" },
       { name: "Go", icon: "logos:go" },
-      { name: "Gin", icon: "simple-icons:gin" },
+      { name: "Gin", icon: "simple-icons:gin", color: "#00ADD8" },
       { name: "Laravel", icon: "logos:laravel" },
       { name: "Java", icon: "logos:java" },
       { name: "Spring Boot", icon: "logos:spring-icon" },
