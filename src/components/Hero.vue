@@ -168,15 +168,48 @@ p {
 }
 
 @media (max-width: 992px) {
+  .hero {
+    min-height: auto;
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
   
-  h2 { text-align: center; }
-  p { margin: 0 auto 2.5rem; }
-  .hero-btns { justify-content: center; }
-  .hero-visual { margin-top: 4rem; }
-  h1 { font-size: 3.5rem; }
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 { 
+    font-size: 3.2rem; 
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  
+  h2 { 
+    font-size: 2rem;
+    text-align: center; 
+    margin-bottom: 1.5rem;
+  }
+
+  p { 
+    font-size: 1.1rem;
+    margin: 0 auto 2.5rem; 
+  }
+
+  .hero-btns { 
+    justify-content: center; 
+  }
+
+  .hero-visual { 
+    margin-top: 3rem; 
+  }
 }
 </style>
