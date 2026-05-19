@@ -7,12 +7,12 @@
           <span class="text-gradient">Heng Hoursan</span>
         </h1>
         <h2 class="reveal shimmer-text">
-          Full-Stack Developer & <br />
-          Software Architect
+          Full-Stack Developer
         </h2>
         <p class="reveal">
-          I build scalable, high-performance web applications with a focus on 
-          Clean Architecture, real-time systems, and modern tech stacks.
+          I turn complex web development challenges into scalable, high-performance digital solutions. 
+          Grounded in Clean Architecture, I build modular full-stack web applications, real-time engines, 
+          and secure APIs with robust access controls (RBAC).
         </p>
         <div class="hero-btns reveal">
           <NuxtLink to="#projects" class="btn btn-primary">View My Work</NuxtLink>
