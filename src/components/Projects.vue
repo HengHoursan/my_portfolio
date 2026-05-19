@@ -96,7 +96,7 @@ const projects = [
     title: "Movie Booking System",
     description:
       "Full-stack movie booking platform featuring a Vue.js frontend and Node.js backend. Includes real-time seat management and automated notifications.",
-    tech: ["Node.js", "Vue 3", "Express", "Redis", "MongoDB", "Socket.io"],
+    tech: ["Vue 3", "Express", "Redis", "MongoDB", "Bakong KHQR Integration", "Telegram API Integration"],
     links: [
       {
         label: "Backend",
@@ -135,7 +135,7 @@ const projects = [
     title: "Bakong KHQR",
     description:
       "Inventory system integrated with Bakong KHQR for seamless digital payments in a MERN stack environment.",
-    tech: ["MERN Stack", "Shadcn/UI", "Tailwind CSS", "API Integration"],
+    tech: ["MERN Stack", "Shadcn/UI", "Tailwind CSS", "Bakong KHQR API Integration"],
     github: "https://github.com/HengHoursan/Bakong_KhQr",
   },
   {

@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="container details-container">
       <div class="skills-rows">
         <div
@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 useScrollReveal();
 
 const skillCategories = [
@@ -95,7 +95,7 @@ const skillCategories = [
     skills: [
       { name: "OAuth2", icon: "logos:google-icon" },
       { name: "Telegram API", icon: "logos:telegram" },
-      { name: "Bakong KHQR", icon: "lucide:qr-code" },
+      { name: "Bakong KHQR API", icon: "lucide:qr-code" },
       { name: "Docker", icon: "logos:docker-icon" },
       { name: "RESTful APIs", icon: "carbon:api" },
       { name: "Socket.io", icon: "logos:socket-io" },
@@ -107,7 +107,7 @@ const skillCategories = [
 ];
 
 const allSkills = computed(() => {
-  return skillCategories.flatMap(category => category.skills);
+  return skillCategories.flatMap((category) => category.skills);
 });
 </script>
 
