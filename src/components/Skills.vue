@@ -261,6 +261,26 @@ const allSkills = computed(() => {
 }
 
 @media (max-width: 768px) {
+  .marquee-container {
+    padding: 1.5rem 0;
+    margin-top: 1.5rem;
+  }
+
+  .marquee-item {
+    width: 75px;
+    height: 75px;
+    margin: 0 0.8rem;
+    border-radius: 12px;
+  }
+
+  .marquee-icon {
+    font-size: 2.2rem;
+  }
+
+  .details-container {
+    margin-top: 3rem;
+  }
+
   .skill-row {
     flex-direction: column;
     align-items: flex-start;
